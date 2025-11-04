@@ -20,16 +20,17 @@ class Vue():
 
     def dessiner_entité(self, rectangle, carree):
         for rect in rectangle:
-            self.canvas.create_rectangle(rect.pos_x - rect.largeur / 2, rect.pos_y - rect.hauteur,
-                                         rect.pos_x + rect.largeur / 2, rect.pos_y + rect.hauteur, fill="blue",
+            self.canvas.create_rectangle(rect.pos_x - rect.largeur / 2, rect.pos_y - rect.hauteur / 2,
+                                         rect.pos_x + rect.largeur / 2, rect.pos_y + rect.hauteur / 2, fill="blue",
                                          tags=("rectangle"))
-        self.canvas.create_rectangle(carree.pos_x - carree.largeur / 2, carree.pos_y - carree.hauteur,
-                                         carree.pos_x + carree.largeur / 2, carree.pos_y + carree.hauteur, fill="red",
+        self.canvas.create_rectangle(carree.pos_x - carree.largeur / 2, carree.pos_y - carree.hauteur / 2,
+                                         carree.pos_x + carree.largeur / 2, carree.pos_y + carree.hauteur / 2, fill="red",
                                          tags=("carre"))
-        self.canvas.tag_bind("carre", "<onclick>", self.demarrer_partie)
+        self.canvas.tag_bind("carre", "<Button-1>", self.demarrer_partie)
 
-    def demarrer_partie(self):
-        pass
+    def demarrer_partie(self, evt):
+        self.parent.demarrer_partie(evt)
+        print("catch")
 
 
 
