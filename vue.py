@@ -23,10 +23,13 @@ class Vue():
             self.canvas.create_rectangle(rect.pos_x - rect.largeur / 2, rect.pos_y - rect.hauteur,
                                          rect.pos_x + rect.largeur / 2, rect.pos_y + rect.hauteur, fill="blue",
                                          tags=("rectangle"))
-        self.canvas.create_rectangle()
+        self.canvas.create_rectangle(carree.pos_x - carree.largeur / 2, carree.pos_y - carree.hauteur,
+                                         carree.pos_x + carree.largeur / 2, carree.pos_y + carree.hauteur, fill="rouge",
+                                         tags=("carre"))
+        self.canvas.tag_bind("carre", "<onclick>", self.demarrer_partie)
 
-vue = Vue(12, 450, 450)
-vue.root.mainloop()
+    def demarrer_partie(self):
+        pass
 
 
 
