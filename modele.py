@@ -1,5 +1,5 @@
 class Carre():
-    def init(self, parent, largeur, hauteur):
+    def __init__(self, parent):
         self.parent = parent
         self.largeur = 40
         self.hauteur = 40
@@ -7,7 +7,7 @@ class Carre():
         self.pos_y = 255
 
 class Rectangle():
-    def init(self, parent, largeur, hauteur, pos_x, pos_y):
+    def __init__(self, parent, largeur, hauteur, pos_x, pos_y):
         self.parent = parent
         self.largeur = largeur
         self.hauteur = hauteur
@@ -20,6 +20,7 @@ class Rectangle():
             'haut-droit' : (1,-1),
             'haut-gauche' : (-1,-1),
         }
+        self
         
     def deplacer(self):
         x,y = self.orientations['bas-droit']
@@ -28,10 +29,10 @@ class Rectangle():
 
 
 class Modele():
-    def init(self, parent, largeur, hauteur):
+    def __init__(self, parent, largeur, hauteur):
         self.parent = parent
         self.largeur = largeur
-        self.hauter = hauteur
+        self.hauteur = hauteur
         self.rectangles = []
         self.joueur = []
         self.scores = {} # key: name, value: score
@@ -51,4 +52,7 @@ class Modele():
         recSupDroit = Rectangle(self, 60, 50, 300, 85)
         recInfGauche = Rectangle(self, 30, 60, 85, 350)
         recInfDroit = Rectangle(self, 100, 20, 355, 340)
-        self.rectangles.append(recGauche, recSupDroit, recInfGauche, recInfDroit)
+        self.rectangles.append(recGauche)
+        self.rectangles.append(recSupDroit)
+        self.rectangles.append(recInfGauche)
+        self.rectangles.append(recInfDroit)
