@@ -13,9 +13,18 @@ class Rectangle():
         self.hauteur = hauteur
         self.pos_x = pos_x
         self.pos_y = pos_y
-
-    def deplacer():
-        pass
+        self.vitesse = 1
+        self.orientations = {
+            'bas-droit' : (1,1),
+            'bas-gauche' : (-1,1),
+            'haut-droit' : (1,-1),
+            'haut-gauche' : (-1,-1),
+        }
+        
+    def deplacer(self):
+        x,y = self.orientations['bas-droit']
+        self.pos_x = self.pos_x + (self.vitesse * x)
+        self.pos_y = self.pos_y + (self.vitesse * y)
 
 
 class Modele():
