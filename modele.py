@@ -43,9 +43,3 @@ class Modele():
         recInfGauche = Rectangle(self, 30, 60, 85, 350)
         recInfDroit = Rectangle(self, 100, 20, 355, 340)
         self.rectangles.append(recGauche, recSupDroit, recInfGauche, recInfDroit)
-
-    
-    
-    
-
-    

@@ -10,4 +10,4 @@ class Controleur():
 
     def initialiser_partie(self):
         self.modele.initialiser_partie()
-        self.vue.dessiner_entité()
+        self.vue.dessiner_entité(self.modele.rectangles, self.modele.joueur)
