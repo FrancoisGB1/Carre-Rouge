@@ -11,3 +11,8 @@ class Controleur():
 
     def initialiser_partie(self):
         self.vue.dessiner_entité(self.modele.rectangles, self.modele.joueur)
+
+    def demarrer_partie(self, evt):
+        self.modele.enJeu = True
+        
+

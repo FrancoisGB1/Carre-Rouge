@@ -20,7 +20,6 @@ class Rectangle():
             'haut-droit' : (1,-1),
             'haut-gauche' : (-1,-1),
         }
-        self
         
     def deplacer(self):
         x,y = self.orientations['bas-droit']
@@ -36,6 +35,7 @@ class Modele():
         self.rectangles = []
         self.joueur = None
         self.scores = {} # key: name, value: score
+        self.enJeu = False
 
     def initialiser_partie(self):
         self.rectangles = []
