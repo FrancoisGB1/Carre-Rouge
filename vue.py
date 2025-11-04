@@ -24,7 +24,7 @@ class Vue():
                                          rect.pos_x + rect.largeur / 2, rect.pos_y + rect.hauteur, fill="blue",
                                          tags=("rectangle"))
         self.canvas.create_rectangle(carree.pos_x - carree.largeur / 2, carree.pos_y - carree.hauteur,
-                                         carree.pos_x + carree.largeur / 2, carree.pos_y + carree.hauteur, fill="rouge",
+                                         carree.pos_x + carree.largeur / 2, carree.pos_y + carree.hauteur, fill="red",
                                          tags=("carre"))
         self.canvas.tag_bind("carre", "<onclick>", self.demarrer_partie)
 

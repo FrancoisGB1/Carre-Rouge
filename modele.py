@@ -34,18 +34,17 @@ class Modele():
         self.largeur = largeur
         self.hauteur = hauteur
         self.rectangles = []
-        self.joueur = []
+        self.joueur = None
         self.scores = {} # key: name, value: score
 
     def initialiser_partie(self):
         self.rectangles = []
-        self.joueur = []
+        self.joueur = None
         self.creer_rectangles()
         self.creer_joueur()
 
     def creer_joueur(self):
-        joueur = Carre(self)
-        self.joueur.append(joueur)
+        self.joueur = Carre(self)
 
     def creer_rectangles(self):
         recGauche = Rectangle(self, 60, 60, 100, 100)
