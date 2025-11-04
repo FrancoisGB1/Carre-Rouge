@@ -13,6 +13,8 @@ class Rectangle():
         self.hauteur = hauteur
         self.pos_x = pos_x
         self.pos_y = pos_y
+    
+    def deplacer
         
 class Modele():
     def __init__(self, parent, largeur, hauteur):
@@ -39,6 +41,7 @@ class Modele():
         recInfGauche = Rectangle(self, 30, 60, 85, 350)
         recInfDroit = Rectangle(self, 100, 20, 355, 340)
         self.rectangles.append(recGauche, recSupDroit, recInfGauche, recInfDroit)
+
 
     
     
