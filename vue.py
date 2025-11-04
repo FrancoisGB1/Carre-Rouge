@@ -18,8 +18,24 @@ class Vue():
 
         self.canvas.create_rectangle(50,50, self.largeur - 50, self.hauteur -50, fill="white")
 
+    def dessiner_entité(self, rectangle, carree):
+        for rect in rectangle:
+            self.canvas.create_rectangle(rect.pos_x - rect.largeur / 2, rect.pos_y - rect.hauteur,
+                                         rect.pos_x + rect.largeur / 2, rect.pos_y + rect.hauteur, fill="blue",
+                                         tags=("rectangle"))
+        self.canvas.create_rectangle()
+
 vue = Vue(12, 450, 450)
 vue.root.mainloop()
+
+
+
+
+
+
+#initialiser
+#mainloop
+
 
 
 
