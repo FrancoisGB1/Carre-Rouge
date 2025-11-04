@@ -14,7 +14,8 @@ class Rectangle():
         self.pos_x = pos_x
         self.pos_y = pos_y
     
-    def deplacer
+    def deplacer():
+        pass
         
 class Modele():
     def __init__(self, parent, largeur, hauteur):
@@ -25,11 +26,11 @@ class Modele():
         self.joueur = []
         self.scores = {} # key: name, value: score
 
-    def demarrer_partie(self):
+    def initialiser_partie(self):
         self.rectangles = []
         self.joueur = []
         self.creer_rectangles()
-        self.creer_joueur
+        self.creer_joueur()
 
     def creer_joueur(self):
         joueur = Carre(self)
