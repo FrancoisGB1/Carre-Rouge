@@ -39,6 +39,8 @@ class Modele():
         self.scores = {} # key: name, value: score
         self.enJeu = False
         self.vitesse = 5
+        self.cursor_x = 0
+        self.cursor_y = 0
 
     def initialiser_partie(self):
         self.rectangles = []
@@ -63,8 +65,11 @@ class Modele():
         for rec in self.rectangles:
             rec.pos_x += rec.orientation_x * self.vitesse
             rec.pos_y += rec.orientation_y * self.vitesse
+
     def bouger_carre(self):
-        pass
+        self.joueur.pos_x = self.cursor_x
+        self.joueur.pos_y = self.cursor_y
+
     def collision(self):
         for rec in self.rectangles:
             if rec.pos_x + rec.largeur / 2 >= 450 or rec.pos_x - rec.largeur / 2 <= 0:

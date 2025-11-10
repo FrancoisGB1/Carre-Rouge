@@ -7,6 +7,7 @@ class Vue():
         self.hauteur = hauteur
         self.root = tk.Tk()
         self.creer_interface()
+        self.pressed = False
 
     def creer_interface(self):
         self.cadre_principale = tk.Frame(self.root) 
@@ -27,12 +28,17 @@ class Vue():
                                          carree.pos_x + carree.largeur / 2, carree.pos_y + carree.hauteur / 2, fill="red",
                                          tags=("carre"))
         self.canvas.tag_bind("carre", "<Button-1>", self.demarrer_partie)
-        #self.canvas.tag_bind("carre", "<Button-1>", self.demarrer_partie)
+        self.canvas.tag_bind("carre", "<ButtonRelease-1>", self.is_released)
 
     def demarrer_partie(self, evt):
+
         self.parent.demarrer_partie(evt)
         print("catch")
+        self.pressed = True
 
+    def is_released(self, evt):
+        self.pressed = False
+        print("released")
 
     def mise_jour(self, rectangle, carree):
         self.canvas.delete("rectangle")
