@@ -27,13 +27,17 @@ class Vue():
                                          carree.pos_x + carree.largeur / 2, carree.pos_y + carree.hauteur / 2, fill="red",
                                          tags=("carre"))
         self.canvas.tag_bind("carre", "<Button-1>", self.demarrer_partie)
+        #self.canvas.tag_bind("carre", "<Button-1>", self.demarrer_partie)
 
     def demarrer_partie(self, evt):
         self.parent.demarrer_partie(evt)
         print("catch")
 
 
-
+    def mise_jour(self, rectangle, carree):
+        self.canvas.delete("rectangle")
+        self.canvas.delete("carre")
+        self.dessiner_entité(rectangle, carree)
 
 
 
