@@ -10,8 +10,6 @@ class Carre():
         self.cote_gauche = self.pos_x - self.largeur
         self.cote_droite = self.pos_x + self.largeur
 
-        def bouger_carre(self, souris_x_root, souris_y_root):
-
 class Rectangle():
     def __init__(self, parent, largeur, hauteur, pos_x, pos_y, or_x, or_y):
         self.parent = parent
@@ -63,7 +61,10 @@ class Modele():
             rec.pos_x += rec.orientation_x * rec.vitesse
             rec.pos_y += rec.orientation_y * rec.vitesse
     def bouger_carre(self, souris_x_root, souris_y_root):
-        
+        difference_x = self.pos_x - souris_x_root
+        difference_y = self.pos_y - souris_y_root
+        self.pos_x += difference_x + souris_x_root
+        self.pos_y += difference_y + souris_y_root
     def collision(self):
         pass
         
