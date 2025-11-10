@@ -14,10 +14,10 @@ class Controleur():
 
     def demarrer_partie(self, evt):
         self.modele.enJeu = True
-        self.boucle()
+        self.boucle(evt)
         
-    def boucle(self):
-        self.modele.bouger_carre()
+    def boucle(self, evt):
+        self.modele.bouger_carre(evt.x_root, evt.y_root)
         self.modele.bouger_rectangle()
         self.modele.collision()
         self.vue.mise_jour(self.modele.rectangles, self.modele.joueur)

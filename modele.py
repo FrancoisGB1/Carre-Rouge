@@ -5,6 +5,12 @@ class Carre():
         self.hauteur = 40
         self.pos_x = 255
         self.pos_y = 255
+        self.cote_haut = self.pos_y - self.hauteur 
+        self.cote_bas = self.pos_y + self.hauteur 
+        self.cote_gauche = self.pos_x - self.largeur
+        self.cote_droite = self.pos_x + self.largeur
+
+        def bouger_carre(self, souris_x_root, souris_y_root):
 
 class Rectangle():
     def __init__(self, parent, largeur, hauteur, pos_x, pos_y, or_x, or_y):
@@ -22,12 +28,6 @@ class Rectangle():
             'haut-droit' : (1,-1),
             'haut-gauche' : (-1,-1),
         }
-        
-    def deplacer(self):
-        x,y = self.orientations['bas-droit']
-        self.pos_x = self.pos_x + (self.vitesse * x)
-        self.pos_y = self.pos_y + (self.vitesse * y)
-
 
 class Modele():
     def __init__(self, parent, largeur, hauteur):
@@ -49,10 +49,10 @@ class Modele():
         self.joueur = Carre(self)
 
     def creer_rectangles(self):
-        recGauche = Rectangle(self, 60, 60, 100, 100, 0, -1)
-        recSupDroit = Rectangle(self, 60, 50, 300, 85, 0, -1)
-        recInfGauche = Rectangle(self, 30, 60, 85, 350, 0,1)
-        recInfDroit = Rectangle(self, 100, 20, 355, 340, 0, 1)
+        recGauche = Rectangle(self, 60, 60, 100, 100, 1, 1)
+        recSupDroit = Rectangle(self, 60, 50, 300, 85, -1, 1)
+        recInfGauche = Rectangle(self, 30, 60, 85, 350, 1, 1)
+        recInfDroit = Rectangle(self, 100, 20, 355, 340, -1, -1)
         self.rectangles.append(recGauche)
         self.rectangles.append(recSupDroit)
         self.rectangles.append(recInfGauche)
@@ -62,8 +62,8 @@ class Modele():
         for rec in self.rectangles:
             rec.pos_x += rec.orientation_x * rec.vitesse
             rec.pos_y += rec.orientation_y * rec.vitesse
-    def bouger_carre(self):
-        pass
+    def bouger_carre(self, souris_x_root, souris_y_root):
+        
     def collision(self):
         pass
         
