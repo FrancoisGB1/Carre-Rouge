@@ -13,7 +13,7 @@ class Rectangle():
         self.hauteur = hauteur
         self.pos_x = pos_x
         self.pos_y = pos_y
-        self.vitesse = 4
+        
         self.orientation_x = or_x
         self.orientation_y = or_y
         self.orientations = {
@@ -38,6 +38,7 @@ class Modele():
         self.joueur = None
         self.scores = {} # key: name, value: score
         self.enJeu = False
+        self.vitesse = 5
 
     def initialiser_partie(self):
         self.rectangles = []
@@ -49,10 +50,10 @@ class Modele():
         self.joueur = Carre(self)
 
     def creer_rectangles(self):
-        recGauche = Rectangle(self, 60, 60, 100, 100, 0, -1)
-        recSupDroit = Rectangle(self, 60, 50, 300, 85, 0, -1)
-        recInfGauche = Rectangle(self, 30, 60, 85, 350, 0,1)
-        recInfDroit = Rectangle(self, 100, 20, 355, 340, 0, 1)
+        recGauche = Rectangle(self, 60, 60, 100, 100, 1, 1)
+        recSupDroit = Rectangle(self, 60, 50, 300, 85, -1, 1)
+        recInfGauche = Rectangle(self, 30, 60, 85, 350, 1,1)
+        recInfDroit = Rectangle(self, 100, 20, 355, 340, -1, 1)
         self.rectangles.append(recGauche)
         self.rectangles.append(recSupDroit)
         self.rectangles.append(recInfGauche)
@@ -60,18 +61,20 @@ class Modele():
 
     def bouger_rectangle(self):
         for rec in self.rectangles:
-            rec.pos_x += rec.orientation_x * rec.vitesse
-            rec.pos_y += rec.orientation_y * rec.vitesse
+            rec.pos_x += rec.orientation_x * self.vitesse
+            rec.pos_y += rec.orientation_y * self.vitesse
     def bouger_carre(self):
         pass
     def collision(self):
         for rec in self.rectangles:
-            if rec.pos_x >= 450 or rec.pos_x <= 0:
+            if rec.pos_x + rec.largeur / 2 >= 450 or rec.pos_x - rec.largeur / 2 <= 0:
                 rec.orientation_x *= -1
-            if rec.pos_y >= 450 or rec.pos_y <= 0:
-                rec.orientation_x *= -1
+            if rec.pos_y + rec.hauteur / 2 >= 450 or rec.pos_y - rec.hauteur / 2 <= 0:
+                rec.orientation_y *= -1
 
         
-    
+        
+        
+
     def demarrer_partie(self, evt):
         pass
