@@ -65,7 +65,12 @@ class Modele():
     def bouger_carre(self):
         pass
     def collision(self):
-        pass
+        for rec in self.rectangles:
+            if rec.pos_x >= 450 or rec.pos_x <= 0:
+                rec.orientation_x *= -1
+            if rec.pos_y >= 450 or rec.pos_y <= 0:
+                rec.orientation_x *= -1
+
         
     
     def demarrer_partie(self, evt):
