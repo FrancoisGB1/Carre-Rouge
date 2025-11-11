@@ -8,6 +8,9 @@ class Vue():
         self.root = tk.Tk()
         self.creer_interface()
         self.pressed = False
+        self.score_text = self.canvas.create_text(100, 430, text="Score : 0", font=("Arial", 16), fill="white", anchor="center")
+        self.reset_button = tk.Button(self.root, text="Reset", command=self.parent.restart_game)
+        self.reset_button.pack(pady=10)
 
     def creer_interface(self):
         self.cadre_principale = tk.Frame(self.root) 
@@ -16,10 +19,11 @@ class Vue():
         self.canvas = tk.Canvas(self.cadre_principale, width=self.largeur, height=self.hauteur)
         self.canvas.pack()
         self.canvas.create_rectangle(0,0, self.largeur, self.hauteur, fill="black")
-
+        
         self.canvas.create_rectangle(50,50, self.largeur - 50, self.hauteur -50, fill="white")
 
     def dessiner_entité(self, rectangle, carree):
+        
         for rect in rectangle:
             self.canvas.create_rectangle(rect.pos_x - rect.largeur / 2, rect.pos_y - rect.hauteur / 2,
                                          rect.pos_x + rect.largeur / 2, rect.pos_y + rect.hauteur / 2, fill="blue",
@@ -29,21 +33,26 @@ class Vue():
                                          tags=("carre"))
         self.canvas.tag_bind("carre", "<Button-1>", self.demarrer_partie)
         self.canvas.tag_bind("carre", "<ButtonRelease-1>", self.is_released)
+        self.canvas.bind("<ButtonRelease-1>", self.is_released)
 
     def demarrer_partie(self, evt):
-
-        self.parent.demarrer_partie(evt)
-        print("catch")
         self.pressed = True
+        self.parent.demarrer_partie(evt)
+        
 
     def is_released(self, evt):
         self.pressed = False
-        print("released")
+
 
     def mise_jour(self, rectangle, carree):
         self.canvas.delete("rectangle")
         self.canvas.delete("carre")
         self.dessiner_entité(rectangle, carree)
+    
+    def update_score(self, score):
+        self.canvas.itemconfig(self.score_text, text=f"Score : {score:.2f}")
+
+    
 
 
 

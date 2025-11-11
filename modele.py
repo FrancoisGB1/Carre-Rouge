@@ -1,10 +1,13 @@
+
+marge = 50
+
 class Carre():
     def __init__(self, parent):
         self.parent = parent
         self.largeur = 40
         self.hauteur = 40
-        self.pos_x = 255
-        self.pos_y = 255
+        self.pos_x = 225
+        self.pos_y = 225
 
 class Rectangle():
     def __init__(self, parent, largeur, hauteur, pos_x, pos_y, or_x, or_y):
@@ -38,9 +41,12 @@ class Modele():
         self.joueur = None
         self.scores = {} # key: name, value: score
         self.enJeu = False
-        self.vitesse = 5
+        self.vitesse = 2
         self.cursor_x = 0
         self.cursor_y = 0
+        self.frames = 0
+        self.score= 0
+
 
     def initialiser_partie(self):
         self.rectangles = []
@@ -76,10 +82,51 @@ class Modele():
                 rec.orientation_x *= -1
             if rec.pos_y + rec.hauteur / 2 >= 450 or rec.pos_y - rec.hauteur / 2 <= 0:
                 rec.orientation_y *= -1
+        self.verifier_collisions()
 
-        
-        
-        
+#----------------------------------------------------------------------- DERNIER PUSH Francois ---------------------------------------------------------------
 
-    def demarrer_partie(self, evt):
-        pass
+    def aire_blanche(self):
+        left = 50
+        top = 50
+        right = self.largeur - 50
+        bottom = self.hauteur - 50
+        return left, top, right, bottom
+
+    def bords_rect(self, x_centre, y_centre, largeur, hauteur):
+        # l = left, t = top, r = right, b = bottom
+        l = x_centre - largeur/2
+        t = y_centre - hauteur/2
+        r = x_centre + largeur/2
+        b = y_centre + hauteur/2
+        return l, t, r, b
+
+    def trouver_overlap(self, l1, t1, r1, b1, l2, t2, r2, b2):
+            #Rectangle 1 : l1, t1, r1, b1   PS : Le carré rouge est aussi un rectangle
+            #Rectangle 2 : l2, t2, r2, b2
+        return not (r1 <= l2 or l1 >= r2 or b1 <= t2 or t1 >= b2)
+
+    def joueur_touche_bordure(self):
+        left, top, right, bottom = self.aire_blanche()
+        # meme principe jl = joueur left, jt = joueur top, jr = joueur right, jb = joueur bottom
+        jl, jt, jr, jb = self.bords_rect(self.joueur.pos_x, self.joueur.pos_y, 
+                                        self.joueur.largeur, self.joueur.hauteur)
+        return (jl <= left) or (jt <= top) or (jr >= right) or (jb >= bottom)
+
+    def joueur_touche_obstacle(self):
+        jl, jt, jr, jb = self.bords_rect(self.joueur.pos_x, self.joueur.pos_y,
+                                        self.joueur.largeur, self.joueur.hauteur)
+        for rec in self.rectangles:
+            rl, rt, rr, rb = self.bords_rect(rec.pos_x, rec.pos_y, rec.largeur, rec.hauteur)
+            if self.trouver_overlap(jl, jt, jr, jb, rl, rt, rr, rb):
+                return True
+        return False
+
+    def verifier_collisions(self):
+        if self.enJeu == True:
+            if self.joueur_touche_obstacle() or self.joueur_touche_bordure():
+                self.enJeu = False
+                return True
+        return False
+    
+
